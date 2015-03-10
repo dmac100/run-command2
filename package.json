@@ -1,0 +1,30 @@
+{
+  "name": "run-command2",
+  "main": "./lib/run-command2",
+  "version": "0.2.0",
+  "description": "Run any Unix command.",
+  "keywords": [
+    "command",
+    "terminal",
+    "execute",
+    "unix",
+    "run"
+  ],
+  "homepage": "https://github.com/nathanjohnson320/run-command2",
+  "bugs": "https://github.com/nathanjohnson320/run-command2/issues",
+  "author": "Nathaniel Johnson",
+  "activationEvents": [
+    "run-command:run",
+    "run-command:re-run-last-command",
+    "run-command:toggle-panel",
+    "run-command:kill-last-command"
+  ],
+  "repository": "https://github.com/nathanjohnson320/run-command2",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "atom-space-pen-views": "^2.0.3"
+  }
+}
