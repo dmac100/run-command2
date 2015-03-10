@@ -30,6 +30,7 @@ class CommandRunnerView extends View
 
   showPanel: =>
     @panel ?= atom.workspace.addBottomPanel(item: this)
+    @panel.show()
 
   togglePanel: =>
     if @panel?.isVisible()
