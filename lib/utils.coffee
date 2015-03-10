@@ -6,6 +6,7 @@ class Utils
   @colorize: (str) ->
     # Get the color code and wrap the element with the associated span
     colors =
+      24: 'no-underline',
       30: 'black',
       31: 'red',
       32: 'green',
@@ -16,5 +17,5 @@ class Utils
       37: 'white',
       39: 'default',
 
-    str.replace /\[(\d+)m(.*)/g, (match, color, string) ->
+    str.replace /\[(\d+)m([^\[]*)/g, (match, color, string) ->
       return "<span class=\"run-command-#{colors[color]}\">#{string}</span>"
