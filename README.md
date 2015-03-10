@@ -25,7 +25,7 @@ Together, these let you do this:
 (You can also toggle the command output with `cmd-ctrl-x`, or kill the last command with `cmd-ctrl-alt-x`)
 
 # TODO
-- ANSI color codes
+- ~~ANSI color codes~~
 - Setting the working directory
 - Resizable output
 - Editor variables (such as `$ATOM_PROJECT` for the current project directory)
