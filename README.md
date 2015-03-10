@@ -3,6 +3,9 @@ Fork of https://github.com/kylewlacy/run-command
 Execute any arbitrary command in [Atom](http://atom.io). Derived from Phil Nash's [Ruby Quick Test](https://github.com/philnash/ruby-quick-test).
 
 # Usage
+
+Make sure you have ~/.bashrc setup so your path works properly
+
 Smack `ctrl-r` to open up this:
 
 !['Run Command' dialog](https://raw.githubusercontent.com/kylewlacy/run-command/master/screenshots/run-command.gif)
