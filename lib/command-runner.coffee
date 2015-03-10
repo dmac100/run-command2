@@ -21,8 +21,6 @@ class CommandRunner
     args: ['-c', @addPrecedentCommand(@command), '-il']
     options:
       cwd: atom.project.getPaths()[0]
-    stdout: @collectResults
-    stderr: @collectResults
     exit: @exit
 
   returnCallback: =>
@@ -31,7 +29,9 @@ class CommandRunner
   runCommand: ->
     @commandResult = ''
     @process = new @processor @processParams()
-    @returnCallback()
+
+    @process.process.stdout.on 'data', @collectResults
+    @process.process.stderr.on 'data', @collectResults
 
   kill: ->
     if @process?

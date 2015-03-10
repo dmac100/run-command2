@@ -39,6 +39,8 @@ class CommandRunnerView extends View
   togglePanel: =>
     if @bottomPane?.isVisible()
       @hidePanel()
+    else
+      @showPanel()
 
   runCommand: (command)->
     if @commandRunner?
@@ -49,14 +51,14 @@ class CommandRunnerView extends View
     @commandRunner.runCommand()
     @showPanel()
 
-  reRunCommand: (e)=>
+  reRunCommand: (e) =>
     if @commandRunner?
       @commandRunner.kill()
 
       @commandRunner.runCommand()
       @showPanel()
     else
-      e.abortKeyBinding()
+
 
   killCommand: (e) =>
     if @commandRunner?

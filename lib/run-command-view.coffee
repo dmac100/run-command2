@@ -48,7 +48,7 @@ class RunCommandView extends View
       @commandRunnerView.runCommand(command)
     @hide()
 
-  reRunCommand: (e)=>
+  reRunCommand: (e) =>
     @commandRunnerView.reRunCommand(e)
 
   killLastCommand: =>
