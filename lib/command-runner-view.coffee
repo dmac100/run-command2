@@ -1,6 +1,8 @@
 {$, View} = require 'atom-space-pen-views'
 {CommandRunner} = require './command-runner'
 
+Utils = require './utils'
+
 module.exports =
 class CommandRunnerView extends View
   @content: ->
@@ -20,7 +22,9 @@ class CommandRunnerView extends View
       @resultsContainer[0].scrollTop + @resultsContainer.outerHeight()
 
     @header.text(command)
-    @results.text(results)
+
+    results = Utils.colorize(results)
+    @results.html(results)
 
     if atBottom and atom.config.get 'run-command.snapCommandResultsToBottom'
       @resultsContainer.scrollToBottom()

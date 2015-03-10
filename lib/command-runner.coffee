@@ -17,7 +17,6 @@ class CommandRunner
     @returnCallback()
 
   processParams: ->
-    console.log ['-c', @addPrecedentCommand(@command), '-i']
     command: if atom.config.get("run-command.shellCommand")? then atom.config.get("run-command.shellCommand") else '/bin/bash'
     args: ['-c', @addPrecedentCommand(@command), '-il']
     options:
