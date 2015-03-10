@@ -26,17 +26,15 @@ class CommandRunnerView extends View
       @resultsContainer.scrollToBottom()
 
   hidePanel: =>
-    @panel?.hide()
+    @bottomPane?.hide()
 
   showPanel: =>
-    @panel ?= atom.workspace.addBottomPanel(item: this)
-    @panel.show()
+    @bottomPane? = atom.workspace.addBottomPanel(item: this)
+    @bottomPane.show()
 
   togglePanel: =>
-    if @panel?.isVisible()
+    if @bottomPane?.isVisible()
       @hidePanel()
-    else
-      @showPanel()
 
   runCommand: (command)->
     if @commandRunner?
