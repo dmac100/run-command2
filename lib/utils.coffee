@@ -13,10 +13,8 @@ class Utils
       34: 'blue',
       35: 'purple',
       36: 'cyan',
-      37: 'white'
+      37: 'white',
+      39: 'default',
 
     str.replace /\[(\d+)m(.*)/g, (match, color, string) ->
-      if colors[color]
-        return "<span class=\"run-command-#{colors[color]}\">#{string}</span>"
-      else
-        return "<span>#{string}</span>"
+      return "<span class=\"run-command-#{colors[color]}\">#{string}</span>"
