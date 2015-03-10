@@ -6,6 +6,7 @@ class Utils
   @colorize: (str) ->
     # Get the color code and wrap the element with the associated span
     colors =
+      4:  'underline',
       24: 'no-underline',
       30: 'black',
       31: 'red',
