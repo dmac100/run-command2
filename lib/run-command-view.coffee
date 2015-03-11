@@ -37,8 +37,6 @@ class RunCommandView extends View
     @commandEntryView.on 'focusout', =>
       @hide()
 
-    @commandEntryView.on
-
   serialize: ->
 
   runCommand: =>
@@ -72,17 +70,16 @@ class RunCommandView extends View
   togglePanel: =>
     @commandRunnerView.togglePanel()
 
-  show: ->
+  show: =>
     @panel ?= atom.workspace.addModalPanel(item: this)
-    @panel.show()
+    @panel?.show()
 
     @storeFocusedElement()
     @commandEntryView.focus()
 
-  hide: ->
+  hide: =>
     @panel?.hide()
     @commandEntryView.setText('')
-    @panel.destroy
 
   destroy: =>
     @hide()
