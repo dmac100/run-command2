@@ -5,8 +5,9 @@ class CommandRunner
   processor: BufferedProcess
   commandResult: ''
 
-  constructor: (command, callback)->
+  constructor: (command, cwd, callback)->
     @command = command
+    @cwd = cwd
     @callback = callback
 
   collectResults: (output) =>

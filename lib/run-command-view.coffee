@@ -4,7 +4,7 @@
 
 {Disposable, CompositeDisposable} = require 'atom'
 
-
+CWDView = require './cwd-view'
 Utils = require './utils'
 
 module.exports =
@@ -27,6 +27,8 @@ class RunCommandView extends View
       @togglePanel()
     atom.commands.add 'atom-workspace', 'run-command:kill-last-command', =>
       @killLastCommand()
+    atom.commands.add 'atom-workspace', 'run-command:cwd', =>
+      @setWorkingDirectory()
 
     @disposables.add atom.commands.add @element,
       'core:confirm': =>
@@ -39,11 +41,15 @@ class RunCommandView extends View
 
   serialize: ->
 
+  setWorkingDirectory: =>
+    @cwd = new CWDView()
+
   runCommand: =>
     command = @commandEntryView.getText()
+    cwd = @cwd?.cwd() || atom.project.getPaths()[0]
 
     unless Utils.stringIsBlank(command)
-      @commandRunnerView.runCommand(command)
+      @commandRunnerView.runCommand(command, cwd)
     @hide()
 
   reRunCommand: (e) =>

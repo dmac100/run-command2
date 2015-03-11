@@ -17,7 +17,8 @@
     "run-command:run",
     "run-command:re-run-last-command",
     "run-command:toggle-panel",
-    "run-command:kill-last-command"
+    "run-command:kill-last-command",
+    "run-command:cwd"
   ],
   "repository": "https://github.com/nathanjohnson320/run-command2",
   "license": "MIT",

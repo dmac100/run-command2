@@ -10,6 +10,10 @@
           'command': 'run-command:run'
         }
         {
+          'label':   'Set working directory'
+          'command': 'run-command:cwd'
+        }
+        {
           'label':   'Re-run last command'
           'command': 'run-command:re-run-last-command'
         }

@@ -43,12 +43,12 @@ class CommandRunnerView extends View
     else
       @bottomPane?.show()
 
-  runCommand: (command)->
+  runCommand: (command, cwd)->
     if @commandRunner?
       @commandRunner.kill()
       delete @commandRunner
 
-    @commandRunner = new CommandRunner(command, @render)
+    @commandRunner = new CommandRunner(command, cwd, @render)
     @commandRunner.runCommand()
     @showPanel()
 

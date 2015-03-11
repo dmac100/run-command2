@@ -9,6 +9,7 @@ module.exports =
 
   runCommandView: null
   commandRunnerView: null
+  cwdView: null
 
   activate: (state) ->
     @commandRunnerView = new CommandRunnerView()
@@ -17,6 +18,7 @@ module.exports =
   deactivate: ->
     @runCommandView.destroy()
     @commandRunnerView.destroy()
+    @cwdView.destroy()
 
   serialize: ->
     runCommandViewState: @runCommandView.serialize()
