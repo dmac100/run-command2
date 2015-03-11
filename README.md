@@ -2,6 +2,13 @@
 Fork of https://github.com/kylewlacy/run-command
 Execute any arbitrary command in [Atom](http://atom.io). Derived from Phil Nash's [Ruby Quick Test](https://github.com/philnash/ruby-quick-test).
 
+# Run Any command!
+### Grunt
+!['Run Command' dialog](https://github.com/nathanjohnson320/run-command2/blob/master/screenshots/grunt.png)
+
+### Color Support
+!['Run Command' dialog](https://github.com/nathanjohnson320/run-command2/blob/master/screenshots/colors.png)
+
 # Usage
 
 Make sure you have ~/.bashrc setup so your path works properly
