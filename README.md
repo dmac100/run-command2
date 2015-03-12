@@ -34,6 +34,7 @@ Together, these let you do this:
 # TODO
 - ~~ANSI color codes~~
 - ~~Setting the working directory~~
+- Tab autocompletion
 - Copy paste from output
 - Resizable output
 - Editor variables (such as `$ATOM_PROJECT` for the current project directory)
