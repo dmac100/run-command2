@@ -50,11 +50,11 @@ class RunCommandView extends View
 
   toggleCWD: ->
 
-    if @cwd.isVisible()
-      @cwd.hide()
+    if @cwd.panel.isVisible()
+      @cwd.panel.hide()
     else
-      @cwd.show()
-      @cwd.addClass('overlay from-top')
+      @cwd.panel.show()
+      #@cwd.panel.addClass('overlay from-top')
       @cwd.setItems(atom.project.getPaths())
       @cwd.focusFilterEditor()
 

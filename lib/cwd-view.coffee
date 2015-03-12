@@ -6,18 +6,19 @@ class CWDView extends SelectListView
    super
    @addClass('overlay from-top')
    @setItems(atom.project.getPaths())
-   atom.workspaceView.append(this)
+   @panel = atom.workspace.addModalPanel(item: this)
    @focusFilterEditor()
+   @panel.show()
 
    @on 'focusout', =>
-     @hide()
+     @panel.hide()
 
   viewForItem: (item) ->
     "<li>#{item}</li>"
 
   confirmed: (item) ->
     @selected = item
-    @hide()
+    @panel.hide()
 
   cwd: ->
     @selected
