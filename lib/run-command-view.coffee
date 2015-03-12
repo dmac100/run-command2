@@ -11,7 +11,7 @@ module.exports =
 class RunCommandView extends View
   @content: ->
     @div class: 'run-command padded overlay from-top', =>
-      @subview 'commandEntryView', new TextEditorView(mini: true, placeholderText: 'Command...')
+      @subview 'commandEntryView', new TextEditorView(mini: true, placeholderText: atom.project.getPaths()[0])
 
 
   initialize: (commandRunnerView)->
@@ -42,11 +42,27 @@ class RunCommandView extends View
   serialize: ->
 
   setWorkingDirectory: =>
-    @cwd = new CWDView()
+
+    if not @cwd?
+      @cwd ?= new CWDView()
+    else
+      @toggleCWD()
+
+  toggleCWD: ->
+
+    if @cwd.isVisible()
+      @cwd.hide()
+    else
+      @cwd.show()
+      @cwd.addClass('overlay from-top')
+      @cwd.setItems(atom.project.getPaths())
+      @cwd.focusFilterEditor()
 
   runCommand: =>
+
     command = @commandEntryView.getText()
     cwd = @cwd?.cwd() || atom.project.getPaths()[0]
+
 
     unless Utils.stringIsBlank(command)
       @commandRunnerView.runCommand(command, cwd)
@@ -71,6 +87,8 @@ class RunCommandView extends View
     if @panel?.isVisible()
       @hide()
     else
+      cwd = @cwd?.cwd() || atom.project.getPaths()[0]
+      @commandEntryView?.model.placeholderText = cwd
       @show()
 
   togglePanel: =>

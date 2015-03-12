@@ -9,12 +9,15 @@ class CWDView extends SelectListView
    atom.workspaceView.append(this)
    @focusFilterEditor()
 
- viewForItem: (item) ->
-   "<li>#{item}</li>"
+   @on 'focusout', =>
+     @hide()
 
- confirmed: (item) ->
-   @selected = item
-   @hide()
+  viewForItem: (item) ->
+    "<li>#{item}</li>"
+
+  confirmed: (item) ->
+    @selected = item
+    @hide()
 
   cwd: ->
     @selected
