@@ -6,7 +6,7 @@ Utils = require './utils'
 module.exports =
 class CommandRunnerView extends View
   @content: ->
-    @div class: 'inset-panel panel-bottom run-command', =>
+    @div class: 'inset-panel panel-bottom run-command native-key-bindings', tabindex: -1, =>
       @div class: 'panel-heading', =>
         @span 'Command: '
         @span outlet: 'header'
