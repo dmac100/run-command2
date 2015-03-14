@@ -1,5 +1,18 @@
 module.exports =
 class Utils
+  @commonPrefix = (words) ->
+    max_word = words.reduce((a, b) ->
+      if a > b then a else b
+    )
+    prefix = words.reduce((a, b) ->
+      if a > b then b else a
+    )
+    # min word
+    while max_word.indexOf(prefix) != 0
+      prefix = prefix.slice(0, -1)
+    prefix
+
+
   @stringIsBlank: (str)->
     !str or /^\s*$/.test str
 

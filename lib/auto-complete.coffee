@@ -1,5 +1,4 @@
 {BufferedProcess} = require 'atom'
-Utils = require './utils'
 
 module.exports =
 class AutoComplete
@@ -9,6 +8,6 @@ class AutoComplete
 
   @params: (input = "/", cwd) ->
     command: if atom.config.get("run-command.shellCommand")? then atom.config.get("run-command.shellCommand") else '/bin/bash'
-    args: ['-c', "compgen -abck #{input}", '-il']
+    args: ['-c', "compgen -cfd #{input}", '-il']
     options:
       cwd: cwd

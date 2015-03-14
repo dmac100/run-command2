@@ -1,5 +1,8 @@
 {SelectListView} = require 'atom-space-pen-views'
 
+AC = require './auto-complete'
+Utils = require './utils'
+
 module.exports =
 class CommandEntry extends SelectListView
   initialize: (CommandEntryView) ->
@@ -33,14 +36,17 @@ class CommandEntry extends SelectListView
 
   autoComplete: ->
     cwd = @cwd?.cwd() || atom.project.getPaths()[0]
-    @autocomplete = AC.complete(@commandEntryView.getText(), cwd)
+    @autocomplete = AC.complete(@getFilterQuery(), cwd)
     @autocomplete.process.stdout.on 'data', @updateCommand
 
-  updateCommand: (output) ->
+  updateCommand: (output) =>
     # Get an array to populate
     output = output.toString().split("\n")
     # Remove the last empty element
     output.pop()
 
     # Populate the list
-    console.log output
+    @setItems(output)
+
+    # Set text to largext common substring
+    @filterEditorView.setText(Utils.commonPrefix(output))

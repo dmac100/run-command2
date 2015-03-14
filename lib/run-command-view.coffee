@@ -6,7 +6,6 @@
 
 CWDView = require './cwd-view'
 CommandEntry = require './command-entry'
-AC = require './auto-complete'
 Utils = require './utils'
 
 module.exports =
