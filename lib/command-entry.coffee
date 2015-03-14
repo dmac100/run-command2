@@ -23,6 +23,8 @@ class CommandEntry extends SelectListView
       else if e.keyCode is 13
         @confirmed(@getFilterQuery())
         CommandEntryView.runCommand(@getFilterQuery())
+      else if e.keyCode is 27
+        @panel.hide()
 
   viewForItem: (item) ->
     "<li>#{item}</li>"
