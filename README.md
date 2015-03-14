@@ -4,10 +4,18 @@ Execute any arbitrary command in [Atom](http://atom.io). Derived from Phil Nash'
 
 # Run Any command!
 ### Grunt
-!['Run Command' dialog](https://github.com/nathanjohnson320/run-command2/blob/master/screenshots/grunt.png)
+!['Run Command' dialog](https://raw.githubusercontent.com/nathanjohnson320/run-command2/master/screenshots/grunt.png)
 
 ### Color Support
-!['Run Command' dialog](https://github.com/nathanjohnson320/run-command2/blob/master/screenshots/colors.png)
+!['Run Command' dialog](https://raw.githubusercontent.com/nathanjohnson320/run-command2/master/screenshots/colors.png)
+
+### Bash Completion
+Integrated with compgen to give you tab autocompletion.
+
+!['Run Command' dialog](https://raw.githubusercontent.com/nathanjohnson320/run-command2/master/screenshots/bash_support.png)
+
+Hit tab and you'll get the largest substring filled in for you.
+!['Run Command' dialog](https://raw.githubusercontent.com/nathanjohnson320/run-command2/master/screenshots/colors.png)
 
 # Usage
 
