@@ -5,15 +5,15 @@
 {Disposable, CompositeDisposable} = require 'atom'
 
 CWDView = require './cwd-view'
+CommandEntry = require './command-entry'
 AC = require './auto-complete'
 Utils = require './utils'
 
 module.exports =
 class RunCommandView extends View
-  @content: ->
-    @div class: 'run-command padded overlay from-top', =>
-      @subview 'commandEntryView', new TextEditorView(mini: true, placeholderText: atom.project.getPaths()[0])
 
+  @content: ->
+    @div class: 'inset-panel panel-top run-command'
 
   initialize: (commandRunnerView)->
     @disposables = new CompositeDisposable
@@ -37,14 +37,6 @@ class RunCommandView extends View
       'core:cancel': =>
         @hide()
 
-    @commandEntryView.on 'focusout', =>
-      @hide()
-
-    @commandEntryView.on 'keydown', (e) =>
-      if e.keyCode is 9
-        e.preventDefault()
-        @autoComplete()
-
   serialize: ->
 
   setWorkingDirectory: =>
@@ -53,6 +45,17 @@ class RunCommandView extends View
       @cwd ?= new CWDView()
     else
       @toggleCWD()
+
+  toggle: =>
+
+    if not @entry?
+      @entry ?= new CommandEntry(@)
+    else
+      if @entry?.panel.isVisible()
+        @entry.panel.hide()
+      else
+        @entry.panel.show()
+        @entry.focusFilterEditor()
 
   toggleCWD: ->
 
@@ -63,22 +66,13 @@ class RunCommandView extends View
       @cwd.setItems(atom.project.getPaths())
       @cwd.focusFilterEditor()
 
-  autoComplete: ->
-    @autocomplete = AC.complete(@commandEntryView.getText())
-    @autocomplete.process.stdout.on 'data', @updateCommand
-
-  updateCommand: (output) ->
-    console.log output.toString()
-
   runCommand: =>
 
-    command = @commandEntryView.getText()
+    command = @entry.getFilterQuery()
     cwd = @cwd?.cwd() || atom.project.getPaths()[0]
-
 
     unless Utils.stringIsBlank(command)
       @commandRunnerView.runCommand(command, cwd)
-    @hide()
 
   reRunCommand: (e) =>
     @commandRunnerView.reRunCommand(e)
@@ -95,14 +89,6 @@ class RunCommandView extends View
     else
       atom.workspace.focus()
 
-  toggle: =>
-    if @panel?.isVisible()
-      @hide()
-    else
-      cwd = @cwd?.cwd() || atom.project.getPaths()[0]
-      @commandEntryView?.model.placeholderText = cwd
-      @show()
-
   togglePanel: =>
     @commandRunnerView.togglePanel()
 
@@ -111,11 +97,10 @@ class RunCommandView extends View
     @panel?.show()
 
     @storeFocusedElement()
-    @commandEntryView.focus()
+    @entry.focusFilterEditor()
 
   hide: =>
-    @panel?.hide()
-    @commandEntryView.setText('')
+    @entry?.hide()
 
   destroy: =>
     @hide()
