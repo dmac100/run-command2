@@ -5,6 +5,7 @@
 {Disposable, CompositeDisposable} = require 'atom'
 
 CWDView = require './cwd-view'
+AC = require './auto-complete'
 Utils = require './utils'
 
 module.exports =
@@ -42,7 +43,7 @@ class RunCommandView extends View
     @commandEntryView.on 'keydown', (e) =>
       if e.keyCode is 9
         e.preventDefault()
-        console.log(e.keyCode)
+        @autoComplete()
 
   serialize: ->
 
@@ -59,9 +60,15 @@ class RunCommandView extends View
       @cwd.panel.hide()
     else
       @cwd.panel.show()
-      #@cwd.panel.addClass('overlay from-top')
       @cwd.setItems(atom.project.getPaths())
       @cwd.focusFilterEditor()
+
+  autoComplete: ->
+    @autocomplete = AC.complete(@commandEntryView.getText())
+    @autocomplete.process.stdout.on 'data', @updateCommand
+
+  updateCommand: (output) ->
+    console.log output.toString()
 
   runCommand: =>
 
