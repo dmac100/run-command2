@@ -39,6 +39,11 @@ class RunCommandView extends View
     @commandEntryView.on 'focusout', =>
       @hide()
 
+    @commandEntryView.on 'keydown', (e) =>
+      if e.keyCode is 9
+        e.preventDefault()
+        console.log(e.keyCode)
+
   serialize: ->
 
   setWorkingDirectory: =>
