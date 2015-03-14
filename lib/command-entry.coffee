@@ -45,6 +45,9 @@ class CommandEntry extends SelectListView
     # Remove the last empty element
     output.pop()
 
+    # Make the array unique
+    output = Utils.uniq(output)
+
     # Populate the list
     @setItems(output)
 

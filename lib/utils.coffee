@@ -12,6 +12,13 @@ class Utils
       prefix = prefix.slice(0, -1)
     prefix
 
+  @uniq = (array) ->
+    array.reduce ((p, c) ->
+      if p.indexOf(c) < 0
+        p.push c
+      p
+    ), []
+
 
   @stringIsBlank: (str)->
     !str or /^\s*$/.test str
