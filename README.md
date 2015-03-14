@@ -15,7 +15,7 @@ Integrated with compgen to give you tab autocompletion.
 !['Run Command' dialog](https://raw.githubusercontent.com/nathanjohnson320/run-command2/master/screenshots/bash_support.png)
 
 Hit tab and you'll get the largest substring filled in for you.
-!['Run Command' dialog](https://raw.githubusercontent.com/nathanjohnson320/run-command2/master/screenshots/colors.png)
+!['Run Command' dialog](https://raw.githubusercontent.com/nathanjohnson320/run-command2/master/screenshots/auto_complete.png)
 
 # Usage
 
