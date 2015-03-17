@@ -19,6 +19,12 @@ class Utils
       p
     ), []
 
+  @replaceAt = (string, start, end, replacement) ->
+    unless start is 0
+      return string.substring(0, start) + " " + replacement + string.substring(end);
+    else
+      return string.substring(0, start) + replacement + string.substring(end);
+
 
   @stringIsBlank: (str)->
     !str or /^\s*$/.test str

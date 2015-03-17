@@ -66,8 +66,7 @@ class RunCommandView extends View
       @cwd.focusFilterEditor()
 
   runCommand: =>
-
-    command = @entry.getFilterQuery()
+    command = @entry.filterEditorView.getText()
     cwd = @cwd?.cwd() || atom.project.getPaths()[0]
 
     unless Utils.stringIsBlank(command)
