@@ -62,7 +62,9 @@ class RunCommandView extends View
       @cwd.panel.hide()
     else
       @cwd.panel.show()
+      @cwd.filterEditorView.setText(@cwd.cwd())
       @cwd.setItems(atom.project.getPaths())
+
       @cwd.focusFilterEditor()
 
   runCommand: =>

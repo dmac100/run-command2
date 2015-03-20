@@ -9,6 +9,7 @@ class CWDView extends SelectListView
    super
    @addClass('overlay from-top')
    @setItems(atom.project.getPaths())
+   @filterEditorView.setText(atom.project.getPaths()[0])
    @panel = atom.workspace.addModalPanel(item: this)
    @focusFilterEditor()
    @panel.show()
@@ -17,8 +18,6 @@ class CWDView extends SelectListView
      if e.keyCode is 9
        e.preventDefault()
        @autoComplete()
-     else if e.keyCode is 13
-       @confirmed(@filterEditorView.getText())
      else if e.keyCode is 27
        @panel.hide()
 
@@ -29,23 +28,24 @@ class CWDView extends SelectListView
     "<li>#{item}</li>"
 
   confirmed: (item) ->
-    @selected = item
+    @selected = @filterEditorView.getText()
+    @selected = path.resolve(@selected)
     @panel.hide()
 
   cwd: ->
     @selected
 
   autoComplete: =>
-    cwd = @cwd || atom.project.getPaths()[0]
+    cwd = @cwd() || atom.project.getPaths()[0]
     wordRegex =
       wordRegex: /[\s]/
     # Get the beginning of the current word
     @start = @filterEditorView.getModel().getLastCursor().getBeginningOfCurrentWordBufferPosition(wordRegex).column
     # Get the end of the current word
     @end = @filterEditorView.getModel().getLastCursor().getEndOfCurrentWordBufferPosition(wordRegex).column
-    @current_command = @filterEditorView.getText().slice(@start, @end)
+    @current_directory = @filterEditorView.getText().slice(@start, @end)
 
-    @autocomplete = AC.complete(@current_command, cwd)
+    @autocomplete = AC.complete(@current_directory, cwd)
     @autocomplete.process.stdout.on 'data', @updateCommand
 
   updateCommand: (output) =>
@@ -56,11 +56,11 @@ class CWDView extends SelectListView
     # Remove the last empty element
     output.pop()
 
-    # Populate the list
-    @setItems(output)
-
     # Make the array unique
     output = Utils.uniq(output)
+
+    # Populate the list
+    @setItems(output)
 
     # Set text to largext common substring
     suggested_command = Utils.commonPrefix(output)
