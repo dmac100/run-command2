@@ -19,6 +19,7 @@ class CWDView extends SelectListView
        e.preventDefault()
        @autoComplete()
      else if e.keyCode is 27
+       @previousElement.focus()
        @panel.hide()
 
    @on 'focusout', =>
@@ -31,6 +32,7 @@ class CWDView extends SelectListView
     @selected = @filterEditorView.getText()
     @selected = path.resolve(@selected)
     @panel.hide()
+    atom.views.getView(atom.workspace).focus()
 
   cwd: ->
     @selected
@@ -45,7 +47,7 @@ class CWDView extends SelectListView
     @end = @filterEditorView.getModel().getLastCursor().getEndOfCurrentWordBufferPosition(wordRegex).column
     @current_directory = @filterEditorView.getText().slice(@start, @end)
 
-    @autocomplete = AC.complete(@current_directory, cwd)
+    @autocomplete = AC.complete(@current_directory, cwd, "d")
     @autocomplete.process.stdout.on 'data', @updateCommand
 
   updateCommand: (output) =>

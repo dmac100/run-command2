@@ -51,7 +51,7 @@ class CommandEntry extends SelectListView
     @end = @filterEditorView.getModel().getLastCursor().getEndOfCurrentWordBufferPosition(wordRegex).column
     @current_command = @filterEditorView.getText().slice(@start, @end)
 
-    @autocomplete = AC.complete(@current_command, cwd)
+    @autocomplete = AC.complete(@current_command, cwd, "cfd")
     @autocomplete.process.stdout.on 'data', @updateCommand
 
   updateCommand: (output) =>

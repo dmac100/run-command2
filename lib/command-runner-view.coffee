@@ -40,6 +40,7 @@ class CommandRunnerView extends View
   togglePanel: ->
     if @bottomPane?.isVisible()
       @bottomPane?.hide()
+      atom.views.getView(atom.workspace).focus()
     else
       @bottomPane?.show()
 
