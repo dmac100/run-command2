@@ -31,7 +31,6 @@ class CommandEntry extends SelectListView
 
   confirmed: (item) ->
     @selected = item
-    @panel.hide()
 
   getEmptyMessage: () ->
     "Commands"
