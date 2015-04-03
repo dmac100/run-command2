@@ -11,18 +11,32 @@ class CommandRunner
     @callback = callback
 
   collectResults: (output) =>
-    @commandResult += output.toString()
+    # Found out that html objects still get renderend and they shouldn't, perform htmlEncode
+    @commandResult += output.toString().replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
     @returnCallback()
 
   exit: (code) =>
     @returnCallback()
 
   processParams: ->
-    command: if atom.config.get("run-command.shellCommand")? then atom.config.get("run-command.shellCommand") else '/bin/bash'
-    args: ['-c', @addPrecedentCommand(@command), '-il']
-    options:
-      cwd: @cwd
-    exit: @exit
+    isWin = /^win/.test(process.platform)
+    if (!isWin)
+      command: if atom.config.get("run-command.shellCommand")? then atom.config.get("run-command.shellCommand") else '/bin/bash'
+      args: ['-c', @addPrecedentCommand(@command), '-il']
+      options:
+        cwd: @cwd
+      exit: @exit
+    else
+      input = Utils.clean(@command.split(/(\s+)/))
+      command: input[0]
+      args: input.slice(1)
+      options:
+        cwd: @cwd
+      exit: @exit
 
   returnCallback: =>
     @callback(@command, @commandResult)

@@ -1,5 +1,9 @@
 module.exports =
 class Utils
+
+  @clean = (strings) ->
+    result = (string for string in strings when !string.match(/\s+/))
+
   @commonPrefix = (words) ->
     max_word = words.reduce((a, b) ->
       if a > b then a else b
