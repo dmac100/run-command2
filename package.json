@@ -13,13 +13,13 @@
   "homepage": "https://github.com/nathanjohnson320/run-command2",
   "bugs": "https://github.com/nathanjohnson320/run-command2/issues",
   "author": "Nathaniel Johnson",
-  "activationEvents": [
-    "run-command:run",
-    "run-command:re-run-last-command",
-    "run-command:toggle-panel",
-    "run-command:kill-last-command",
-    "run-command:cwd"
-  ],
+  "activationCommands": {
+    "atom-workspace": "run-command:run",
+    "atom-workspace": "run-command:re-run-last-command",
+    "atom-workspace": "run-command:toggle-panel",
+    "atom-workspace": "run-command:kill-last-command",
+    "atom-workspace": "run-command:cwd"
+  },
   "repository": "https://github.com/nathanjohnson320/run-command2",
   "license": "MIT",
   "engines": {
