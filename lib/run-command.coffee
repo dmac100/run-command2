@@ -2,7 +2,7 @@ RunCommandView = require './run-command-view'
 CommandRunnerView = require './command-runner-view'
 
 module.exports =
-  configDefaults:
+  config:
     shellCommand: '/bin/bash'
     precedeCommandsWith: null
     snapCommandResultsToBottom: true
