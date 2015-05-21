@@ -2,6 +2,7 @@
 
 AC = require './auto-complete'
 Utils = require './utils'
+path = require('path');
 
 module.exports =
 class CWDView extends SelectListView
