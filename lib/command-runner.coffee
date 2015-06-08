@@ -25,7 +25,7 @@ class CommandRunner
   processParams: ->
     isWin = /^win/.test(process.platform)
     if (!isWin)
-      command: if atom.config.get("run-command.shellCommand")? then atom.config.get("run-command.shellCommand") else '/bin/bash'
+      command: if atom.config.get("run-command2.shellCommand")? then atom.config.get("run-command2.shellCommand") else '/bin/bash'
       args: ['-c', @addPrecedentCommand(@command), '-il']
       options:
         cwd: @cwd
@@ -53,7 +53,7 @@ class CommandRunner
       @process.kill()
 
   addPrecedentCommand: (command)=>
-    precedent = atom.config.get 'run-command.precedeCommandsWith'
+    precedent = atom.config.get 'run-command2.precedeCommandsWith'
 
     if precedent? and !Utils.stringIsBlank(precedent)
       @joinCommands [precedent, command]

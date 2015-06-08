@@ -26,7 +26,7 @@ class CommandRunnerView extends View
     results = Utils.colorize(results)
     @results.html(results)
 
-    if atBottom and atom.config.get 'run-command.snapCommandResultsToBottom'
+    if atom.config.get 'run-command2.snapCommandResultsToBottom'
       @resultsContainer.scrollToBottom()
 
   hidePanel: =>
