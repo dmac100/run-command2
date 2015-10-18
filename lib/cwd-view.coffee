@@ -37,7 +37,7 @@ class CWDView extends SelectListView
     atom.views.getView(atom.workspace).focus()
 
   cwd: ->
-    @selected
+    @selected || ''
 
   autoComplete: =>
     cwd = @cwd() || atom.project.getPaths()[0]
