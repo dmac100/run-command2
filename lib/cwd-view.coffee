@@ -20,7 +20,8 @@ class CWDView extends SelectListView
        e.preventDefault()
        @autoComplete()
      else if e.keyCode is 27
-       @previousElement.focus()
+       if @previousElement?
+         @previousElement.focus()
        @panel.hide()
 
    @on 'focusout', =>
