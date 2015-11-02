@@ -19,7 +19,8 @@
       "run-command:re-run-last-command",
       "run-command:toggle-panel",
       "run-command:kill-last-command",
-      "run-command:cwd"
+      "run-command:cwd",
+      "run-command:copy"
     ]
   },
   "repository": "https://github.com/nathanjohnson320/run-command2",

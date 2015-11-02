@@ -25,6 +25,7 @@ class CommandRunnerView extends View
 
     results = Utils.colorize(results)
     @results.html(results)
+    @output = results
 
     if atom.config.get 'run-command2.snapCommandResultsToBottom'
       @resultsContainer.scrollToBottom()

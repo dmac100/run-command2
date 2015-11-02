@@ -24,6 +24,10 @@
         {
           'label':   'Kill last command'
           'command': 'run-command:kill-last-command'
+        },
+        {
+          'label':   'Copy buffer text'
+          'command': 'run-command:copy'
         }
       ]
     ]

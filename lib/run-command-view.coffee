@@ -29,6 +29,8 @@ class RunCommandView extends View
       @killLastCommand()
     atom.commands.add 'atom-workspace', 'run-command:cwd', =>
       @setWorkingDirectory()
+    atom.commands.add 'atom-workspace', 'run-command:copy', =>
+      @copyBuffer()
 
     @disposables.add atom.commands.add @element,
       'core:confirm': =>
@@ -73,6 +75,9 @@ class RunCommandView extends View
 
     unless Utils.stringIsBlank(command)
       @commandRunnerView.runCommand(command, cwd)
+
+  copyBuffer: =>
+    atom.clipboard.write(@commandRunnerView.output)
 
   reRunCommand: (e) =>
     @commandRunnerView.reRunCommand(e)
